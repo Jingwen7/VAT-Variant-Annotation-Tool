@@ -1,0 +1,6 @@
+###### Requirements with Version Specifiers ######
+setuptools<58
+vcfpy
+requests
+json5
+jsonschema
