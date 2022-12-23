@@ -14,12 +14,10 @@ VAT is a variant annotation tool that parses VCF files and fetches variant infor
 
 * [Introduction](#about-the-project)
 * [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
+  * [Installation and Prerequisites](#installation-and-irerequisites)
 * [Usage](#usage)
 	* [Example](#example)
 	* [Output format] (#output)
-* [Contact](#contact)
 
 
 
@@ -32,7 +30,7 @@ VAT is a variant annotation tool that parses VCF files, annotates the following 
 3. Percentage of reads supporting the variant versus those supporting reference reads.
 4. Gene of the variant, type of variation (substitution, insertion, deleteion, CNV, etc.) and their effect (missense, silent, intergenic, etc.). The API
 documentation is available here: https://rest.ensembl.org/#VEP
-5. The minor allele frequency of the variant if available.
+5. The minor allele and minor allele frequency of the variant if available.
 6. Additional annotations: genotype, rsid, minor_allele_freq, minor_allele, clin_sig, transcript_id, gene_id, impact, gene_symbol, biotype, polyphen_prediction, and sift_prediction. NOTE: there might be multiple transcript_id, gene_id, gene_symbol, polyphen_prediction, sift_prediction for each variant. 
 
 
@@ -40,21 +38,21 @@ documentation is available here: https://rest.ensembl.org/#VEP
 ## Getting Started
 
 To install VAT, python (>= 3.10), vcfpy, requests, json5 and jsonschema are required. 
-### Prerequisites
 
+### Installation and Prerequisites
+1. Clone the repo
+```sh
+git clone https://github.com/Jingwen7/VAT-Variant-Annotation-Tool.git
+cd VAT-Variant-Annotation-Tool/
+```
+
+2. Intall the prerequisites
 ```sh
 conda create --name vat python=3.10
 conda activate vat
 pip install -r requirements.txt
 ```
 
-### Installation
-
-1. Clone the repo
-```sh
-git clone https://github.com/Jingwen7/VAT-Variant-Annotation-Tool.git
-cd VAT-Variant-Annotation-Tool/
-```
 
 
 <!-- USAGE EXAMPLES -->
