@@ -17,7 +17,7 @@ VAT is a variant annotation tool that parses VCF files and fetches variant infor
   * [Installation and Prerequisites](#installation-and-irerequisites)
 * [Usage](#usage)
 	* [Example](#example)
-	* [Output format] (#output)
+	* [Output format](#output)
 
 
 
