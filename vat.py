@@ -211,7 +211,7 @@ class annotateVariant(object):
     def out(self, out_file):
         with open(out_file, 'w', newline='') as tsvfile:
             writer = csv.writer(tsvfile, delimiter='\t', lineterminator='\n')
-            writer.writerow(["CHROM", "POS", "REF", "ALT", "TYPE", "total_read_depth", \
+            writer.writerow(["CHROM", "POS", "REF", "ALT", "GT", "TYPE", "total_read_depth", \
                              "ref_read_depth", "alt_read_depth", "Ratio_supporting_reads_alt_vs_ref", \
                               "rsid", "most_severe_consequence", "minor_allele_freq", \
                              "minor_allele", "clin_sig", "transcript_id", "gene_id", "gene_symbol", "impact", \
@@ -219,7 +219,7 @@ class annotateVariant(object):
             
             for var, info in self.annotate_res.items():
                 if 'ANNO' in info and info['ANNO']:
-                    writer.writerow([info['CHROM'], info['POS'], info['REF'], ','.join([str(ch) for ch in info["ALT"]]), str(info['TC']), \
+                    writer.writerow([info['CHROM'], info['POS'], info['REF'], ','.join([str(ch) for ch in info["ALT"]]), info['GT'], str(info['TC']), \
                                      str(info['TF']), str(info['TR']), str(info['PRAR']), \
                                      info['ANNO']['rsid'], info['ANNO']['most_severe_consequence'], str(info['ANNO']['minor_allele_freq']), \
                                      info['ANNO']['minor_allele'], str(info['ANNO']['clin_sig']), info['ANNO']['transcript_id'], \
@@ -227,7 +227,7 @@ class annotateVariant(object):
                                      info['ANNO']['biotype'], info['ANNO']['polyphen_prediction'], info['ANNO']['sift_prediction'],\
                                     ])
                 else:
-                    writer.writerow([info['CHROM'], info['POS'], info['REF'], ','.join([str(ch) for ch in info["ALT"]]), str(info['TC']), \
+                    writer.writerow([info['CHROM'], info['POS'], info['REF'], ','.join([str(ch) for ch in info["ALT"]]), info['GT'], str(info['TC']), \
                                      str(info['TF']), str(info['TR']), str(info['PRAR'])] + ['NA'] * 12)
         return 
 

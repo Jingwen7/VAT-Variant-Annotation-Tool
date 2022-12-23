@@ -2,10 +2,10 @@
 
 <!-- PROJECT LOGO -->
 <br />
-<p align="center">
-  <h3 align="center">VAT-Variant-Annotation-Tool</h3>
+<p align="left">
+  <h3 align="left">VAT-Variant-Annotation-Tool</h3>
 
-  <p align="center">
+  <p align="left">
     VAT is a variant annotation tool that parses VCF files and fetches variant information from Ensembl Variant Effect Predictor (VEP)
     <br />
     <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
@@ -31,14 +31,14 @@
 <!-- Introduction-->
 ## Introduction
 
-VAT is a variant annotation tool that parses VCF files, annotates the following information and output annotation in a tsv file. 
+VAT is a variant annotation tool that parses VCF files, annotates the following information and outputs annotation to a tsv file. 
 1. Depth of sequence coverage at the site of variation.
 2. Number of reads supporting the variant.
 3. Percentage of reads supporting the variant versus those supporting reference reads.
 4. Gene of the variant, type of variation (substitution, insertion, deleteion, CNV, etc.) and their effect (missense, silent, intergenic, etc.). The API
 documentation is available here: https://rest.ensembl.org/#VEP
 5. The minor allele frequency of the variant if available.
-6. Additional annotations: rsid, minor_allele_freq, minor_allele, clin_sig, transcript_id, gene_id, impact, gene_symbol, biotype, polyphen_prediction, and sift_prediction. NOTE: there might be multiple transcript_id, gene_id, gene_symbol, polyphen_prediction, sift_prediction for each variant. 
+6. Additional annotations: genotype, rsid, minor_allele_freq, minor_allele, clin_sig, transcript_id, gene_id, impact, gene_symbol, biotype, polyphen_prediction, and sift_prediction. NOTE: there might be multiple transcript_id, gene_id, gene_symbol, polyphen_prediction, sift_prediction for each variant. 
 
 
 <!-- GETTING STARTED -->
@@ -66,17 +66,46 @@ git clone https://github.com/Jingwen7/VAT-Variant-Annotation-Tool.git
 ```sh
 usage: vat.py [-h] -i [INPUT_FILE_PATH] -o [OUTPUT_FILE_PATH]
 ```
-### Example
+### Command line
 ```sh
-python3 vat.py -i /project/mchaisso_100/cmb-16/jingwenr/tempus/test_vcf_data.txt -o /project/mchaisso_100/cmb-16/jingwenr/tempus/out.tsv
+python3 vat.py -i data/test_vcf_data.vcf -o data/out.tsv
 ```
+### Input format:
+A typical input vcf file is provided: "https://github.com/github_username/repo_name/issues"
+
 ### Output format
-VAT stores the annotation of each variant in a tsv file.
+VAT output the annotation of variants to a tsv file. Each row stores the annotation of a variant. 
 
 
 The following shows an example of the tsv file
 ```
-CHROM	POS	REF	ALT	TYPE	total_read_depth	ref_read_depth	alt_read_depth	Ratio_supporting_reads_alt_vs_ref	rsid	most_severe_consequence	minor_allele_freq	minor_allele	clin_sig	transcript_id	gene_id	gene_symbol	impact	biotype	polyphen_prediction	sift_prediction
-1	11090916	C	A	123	1	122	122.0	COSV68896102	missense_variant	NA	NA	NA	ENST00000400897,ENST00000607145	ENSG00000009724,ENSG00000271895	MASP2,RP4-635E18.8	MODERATE,MODIFIER	protein_coding,antisense	possibly_damaging,NA	deleterious,NA
-1	1650832	A	G	314	163	151	0.9263803680981595	rs72909030	missense_variant	NA	NA	NA	ENST00000356200,ENST00000356937,ENST00000357760,ENST00000358779,ENST00000378633,ENST00000378635,ENST00000378638,ENST00000401096,ENST00000404249,ENST00000460465,ENST00000479362,ENST00000487462,ENST00000498810,ENST00000509982,ENST00000598846	ENSG00000008128,ENSG00000008128,ENSG00000008128,ENSG00000008128,ENSG00000008128,ENSG00000008128,ENSG00000008128,ENSG00000008128,ENSG00000008128,ENSG00000008128,ENSG00000008128,ENSG00000008128,ENSG00000008128,ENSG00000008128,ENSG00000268575	CDK11A,CDK11A,CDK11A,CDK11A,CDK11A,CDK11A,CDK11A,CDK11A,CDK11A,CDK11A,CDK11A,CDK11A,CDK11A,CDK11A,RP1-283E3.8	MODERATE,MODIFIER,MODERATE,MODERATE,MODERATE,MODERATE,MODERATE,MODIFIER,MODERATE,MODERATE,MODERATE,MODIFIER,MODIFIER,MODERATE,MODIFIER	protein_coding,retained_intron,protein_coding,protein_coding,protein_coding,protein_coding,protein_coding,protein_coding,protein_coding,nonsense_mediated_decay,protein_coding,retained_intron,retained_intron,nonsense_mediated_decay,processed_transcript	benign,NA,benign,benign,benign,benign,benign,NA,benign,benign,benign,NA,NA,benign,NA	tolerated_low_confidence,NA,tolerated_low_confidence,tolerated_low_confidence,tolerated_low_confidence,tolerated_low_confidence,tolerated_low_confidence,NA,tolerated_low_confidence,tolerated,tolerated_low_confidence,NA,NA,tolerated,NA
+CHROM	POS	REF	ALT	GT	TYPE	total_read_depth	ref_read_depth	alt_read_depth	Ratio_supporting_reads_alt_vs_ref	rsid	most_severe_consequence	minor_allele_freq	minor_allele	clin_sig	transcript_id	gene_id	gene_symbol	impact	biotype	polyphen_prediction	sift_prediction
+1	11090916	C	A	1/1	123	1	122	122.0	COSV68896102	missense_variant	NA	NA	NA	ENST00000400897,ENST00000607145	ENSG00000009724,ENSG00000271895	MASP2,RP4-635E18.8	MODERATE,MODIFIER	protein_coding,antisense	possibly_damaging,NA	deleterious,NA
+1	11087524	G	A	1/1	156	2	154	77.0	rs1782455	synonymous_variant	0.3125	G	['benign']	ENST00000240185,ENST00000315091,ENST00000400897,ENST00000439080,ENST00000473869,ENST00000477447,ENST00000480464,ENST00000496840,ENST00000607145	ENSG00000120948,ENSG00000120948,ENSG00000009724,ENSG00000120948,ENSG00000120948,ENSG00000120948,ENSG00000120948,ENSG00000120948,ENSG00000271895	TARDBP,TARDBP,MASP2,TARDBP,TARDBP,TARDBP,TARDBP,TARDBP,RP4-635E18.8	MODIFIER,MODIFIER,LOW,MODIFIER,MODIFIER,MODIFIER,MODIFIER,MODIFIER,MODIFIER	protein_coding,protein_coding,protein_coding,protein_coding,nonsense_mediated_decay,nonsense_mediated_decay,processed_transcript,nonsense_mediated_decay,antisense	NA,NA,NA,NA,NA,NA,NA,NA,NA	NA,NA,NA,NA,NA,NA,NA,NA,NA
 ```
+
+The following are the decription of columns in output tsv file. 
+| Column Name                       | Descriptio                                                                                   |
+|-----------------------------------|----------------------------------------------------------------------------------------------|
+| CHROM                             | -                                                                                            |
+| POS                               | -                                                                                            |
+| REF                               | -                                                                                            |
+| ALT                               | -                                                                                            |
+| TYPE                              | Type of the variant                                                                          |
+| GT                                | Genotype of the variant                                                                      |
+| total_read_depth                  | Total number of reads at this site                                                           |
+| ref_read_depth                    | Total number of reads containing REF allele                                                  |
+| alt_read_depth                    | Total number of reads contains ALT alleles                                                   |
+| Ratio_supporting_reads_alt_vs_ref | Ratio of number of reads supporting ALT versus those supporting REF allele.                  |
+| rsid                              | unique label of snp                                                                          |
+| most_severe_consequence           | -                                                                                            |
+| minor_allele_freq                 | -                                                                                            |
+| minor_allele                      | -                                                                                            |
+| clin_sig                          | interpretations of variant's significance to disease (https://www.ncbi.nlm.nih.gov/clinvar/) |
+| transcript_id                     | -                                                                                            |
+| gene_id                           | -                                                                                            |
+| gene_symbol                       | -                                                                                            |
+| impact                            | a simple assessment of the putative impact of the variant based on SnpEff                    |
+| biotype                           | gene biotype                                                                                 |
+| polyphen_prediction               | potential pathogenicity of a variant                                                         |
+| sift_prediction                   | prediction of whether an amino acid substitution is likely to affect protein function        |
