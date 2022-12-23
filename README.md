@@ -1,15 +1,12 @@
 # VAT-Variant-Annotation-Tool
 
-<br />
+VAT-Variant-Annotation-Tool
 <p align="left">
-  <h3 align="left">VAT-Variant-Annotation-Tool</h3>
-  <p align="left">
-    VAT is a variant annotation tool that parses VCF files and fetches variant information from Ensembl Variant Effect Predictor (VEP)
-    <br />
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
-  </p>
+VAT is a variant annotation tool that parses VCF files and fetches variant information from Ensembl Variant Effect Predictor (VEP).
+<br />
+<a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
+·
+<a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
 </p>
 
 <!-- TABLE OF CONTENTS -->
