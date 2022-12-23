@@ -14,7 +14,7 @@ VAT is a variant annotation tool that parses VCF files and fetches variant infor
 
 * [Introduction](#about-the-project)
 * [Getting Started](#getting-started)
-  * [Installation and Prerequisites](#installation-and-irerequisites)
+  * [Prerequisites and Installation](#prerequisites-and-installation)
 * [Usage](#usage)
 	* [Example](#example)
 	* [Input format](#input)
@@ -40,14 +40,14 @@ documentation is available here: https://rest.ensembl.org/#VEP
 
 To install VAT, python (>= 3.10), vcfpy, requests, json5 and jsonschema are required. 
 
-### Installation and Prerequisites
+### Prerequisites and Installation
 1. Clone the repo
 ```sh
 git clone https://github.com/Jingwen7/VAT-Variant-Annotation-Tool.git
 cd VAT-Variant-Annotation-Tool/
 ```
 
-2. Intall the prerequisites
+2. Create conda env and install the prerequisites
 ```sh
 conda create --name vat python=3.10
 conda activate vat
