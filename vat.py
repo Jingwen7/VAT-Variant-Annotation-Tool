@@ -2,8 +2,7 @@
 
 """
 Author: Jingwen Ren (jingwenr@usc.edu)
-PhD Candidate in Epidemiology
-Quantative Biology and Bioinformatics
+PhD Candidate in Quantative Biology and Bioinformatics
 University of Southern California
 """
 
